@@ -14,9 +14,15 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <style>
-      #waveform {
-        background:url(ajax-loader.gif) no-repeat center center;
-      }
+    #waveform {
+        background: url(ajax-loader.gif) no-repeat center center;
+    }
+    handle {
+      width:5%;
+      max-width:10px;
+      border-left:3px solid rgba(100,100, 100, .4);
+      border-right:3px solid rgba(100,100, 100, .4);
+    }
     </style>
 </head>
 
@@ -64,6 +70,26 @@
     wavesurfer.on('ready', function() {
         // wavesurfer.play();
         $("#waveform").css("background", "none");
+        wavesurfer.enableDragSelection({});
+
+        // Add a couple of pre-defined regions
+        wavesurfer.addRegion({
+            start: 2, // time in seconds
+            end: 10, // time in seconds
+            color: 'hsla(100, 100%, 30%, 0.1)'
+        });
+
+        wavesurfer.addRegion({
+            start: 120,
+            end: 135,
+            color: 'hsla(200, 100%, 30%, 0.1)'
+        });
+
+        wavesurfer.addRegion({
+            start: 210,
+            end: 240,
+            color: 'hsla(400, 100%, 30%, 0.1)'
+        });
     });
     </script>
 </body>
