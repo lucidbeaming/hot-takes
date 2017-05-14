@@ -17,11 +17,12 @@
     #waveform {
         background: url(ajax-loader.gif) no-repeat center center;
     }
+    
     handle {
-      width:5%;
-      max-width:10px;
-      border-left:3px solid rgba(100,100, 100, .4);
-      border-right:3px solid rgba(100,100, 100, .4);
+        width: 5%;
+        max-width: 10px;
+        border-left: 3px solid rgba(100, 100, 100, .4);
+        border-right: 3px solid rgba(100, 100, 100, .4);
     }
     </style>
 </head>
@@ -33,25 +34,28 @@
                 <p>&nbsp;</p>
                 <div class="jumbotron">
                     <div class="row">
-                        <div class="col-md-7">
+                        <div class="col-md-12">
                             <h1>Hot Takes</h1>
                             <p>Podcast audio commenting</p>
                         </div>
-                        <div class="col-md-5">
-                            <button type="button" class="btn btn-default btn-lg" onclick="wavesurfer.play()">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div id="waveform"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                        <p>&nbsp;</p>
+                            <button type="button" class="btn btn-default btn-lg pull-right" onclick="wavesurfer.play()">
                                 <span class="glyphicon glyphicon-play" aria-hidden="true"></span> Play
                             </button>
-                            <button type="button" class="btn btn-default btn-lg" onclick="wavesurfer.playPause()">
+                            <button type="button" class="btn btn-default btn-lg pull-right" onclick="wavesurfer.playPause()">
                                 <span class="glyphicon glyphicon-pause" aria-hidden="true"></span> Pause
                             </button>
                         </div>
                     </div>
-                    <div id="waveform"></div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12>">
             </div>
         </div>
     </div>
@@ -66,7 +70,7 @@
         waveColor: 'lightblue',
         progressColor: 'darkcyan'
     });
-    wavesurfer.load('candell.mp3');
+    wavesurfer.load('99pi.mp3');
     wavesurfer.on('ready', function() {
         // wavesurfer.play();
         $("#waveform").css("background", "none");
@@ -74,20 +78,20 @@
 
         // Add a couple of pre-defined regions
         wavesurfer.addRegion({
-            start: 2, // time in seconds
-            end: 10, // time in seconds
+            start: 64, // time in seconds
+            end: 67, // time in seconds
             color: 'hsla(100, 100%, 30%, 0.1)'
         });
 
         wavesurfer.addRegion({
-            start: 120,
-            end: 135,
+            start: 81,
+            end: 83,
             color: 'hsla(200, 100%, 30%, 0.1)'
         });
 
         wavesurfer.addRegion({
-            start: 210,
-            end: 240,
+            start: 93,
+            end: 118,
             color: 'hsla(400, 100%, 30%, 0.1)'
         });
     });
