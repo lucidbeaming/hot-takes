@@ -24,6 +24,19 @@
         border-left: 2px solid rgba(100, 100, 100, .4);
         border-right: 2px solid rgba(100, 100, 100, .4);
     }
+    
+    #recorder,
+    #share {
+        width: auto;
+        height: 200px;
+        display:none;
+    }
+    
+    #recorder .col-md-12,
+    #share .col-md-12, #recorder .col-md-6,
+    #share .col-md-6 {
+        padding: 30px;
+    }
     </style>
 </head>
 
@@ -46,7 +59,52 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                        <p>&nbsp;</p>
+                            <div id="recorder">
+                                <div class="row">
+                                    <div class="col-md-12 col-md-offset-3 text-center">
+                                        <img src="placeholder.png" class="img-responsive" width="600" height="250" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 text-center">
+                                        <button type="button" class="btn btn-default btn-lg">
+                                            <span class="glyphicon glyphicon-play" aria-hidden="true"></span> Record
+                                        </button>
+                                        <button type="button" class="btn btn-default btn-lg">
+                                            <span class="glyphicon glyphicon-stop" aria-hidden="true"></span> Stop
+                                        </button>
+                                        <button type="button" class="btn btn-default btn-lg">
+                                            <span class="glyphicon glyphicon-check" aria-hidden="true"></span> Save
+                                        </button>
+                                        <button type="button" class="btn btn-default btn-lg">
+                                            <span class="glyphicon glyphicon-send" aria-hidden="true"></span> Tweet
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-md-12">
+                            <div id="share">
+                                <div class="row">
+                                    <div class="col-md-6 col-md-offset-3 text-center">
+                                        <img src="placeholder.png" class="img-responsive" width="600" height="250" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 text-center">
+                                        <button type="button" class="btn btn-default btn-lg">
+                                            <span class="glyphicon glyphicon-send" aria-hidden="true"></span> Tweet
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-md-12">
+                            <p>&nbsp;</p>
                             <button type="button" class="btn btn-default btn-lg pull-right" onclick="wavesurfer.play()">
                                 <span class="glyphicon glyphicon-play" aria-hidden="true"></span> Play
                             </button>
@@ -70,7 +128,7 @@
         waveColor: '#cccccc',
         progressColor: '#53e4c3',
         barWidth: '3',
-        barHeight:'2'
+        barHeight: '2'
     });
     wavesurfer.load('99pi.mp3');
     wavesurfer.on('ready', function() {
@@ -99,6 +157,15 @@
             color: 'hsla(400, 100%, 30%, 0.1)',
             drag: false
         });
+        // wavesurfer.on('seek', function() {
+        //    $("#recorder").toggle("slow");
+        //    $("#share").hide("slow");
+        // });
+        wavesurfer.on('region-click', function() {
+            $("#share").toggle("slow");
+            // $("#recorder").hide("slow");
+        });
+
     });
     </script>
 </body>
