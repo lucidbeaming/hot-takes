@@ -61,8 +61,8 @@
                         <div class="col-md-12">
                             <div id="recorder">
                                 <div class="row">
-                                    <div class="col-md-12 col-md-offset-3 text-center">
-                                        <img src="placeholder.png" class="img-responsive" width="600" height="250" />
+                                    <div class="col-md-6 col-md-offset-3 text-center">
+                                        <img src="vumeter.jpg" class="img-responsive" width="600" height="196" />
                                     </div>
                                 </div>
                                 <div class="row">
@@ -89,7 +89,7 @@
                             <div id="share">
                                 <div class="row">
                                     <div class="col-md-6 col-md-offset-3 text-center">
-                                        <img src="placeholder.png" class="img-responsive" width="600" height="250" />
+                                        <img src="shcomp.png" class="img-responsive" width="600" height="241" />
                                     </div>
                                 </div>
                                 <div class="row">
@@ -157,13 +157,13 @@
             color: 'hsla(400, 100%, 30%, 0.1)',
             drag: false
         });
-        // wavesurfer.on('seek', function() {
-        //    $("#recorder").toggle("slow");
-        //    $("#share").hide("slow");
-        // });
+        wavesurfer.on('region-update-end', function() {
+            $("#recorder").toggle("slow");
+            $("#share").hide();
+         });
         wavesurfer.on('region-click', function() {
             $("#share").toggle("slow");
-            // $("#recorder").hide("slow");
+            $("#recorder").hide();
         });
 
     });
