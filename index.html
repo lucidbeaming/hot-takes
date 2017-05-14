@@ -21,8 +21,8 @@
     handle {
         width: 5%;
         max-width: 10px;
-        border-left: 3px solid rgba(100, 100, 100, .4);
-        border-right: 3px solid rgba(100, 100, 100, .4);
+        border-left: 2px solid rgba(100, 100, 100, .4);
+        border-right: 2px solid rgba(100, 100, 100, .4);
     }
     </style>
 </head>
@@ -67,8 +67,10 @@
     <script>
     var wavesurfer = WaveSurfer.create({
         container: '#waveform',
-        waveColor: 'lightblue',
-        progressColor: 'darkcyan'
+        waveColor: '#cccccc',
+        progressColor: '#53e4c3',
+        barWidth: '3',
+        barHeight:'2'
     });
     wavesurfer.load('99pi.mp3');
     wavesurfer.on('ready', function() {
@@ -80,19 +82,22 @@
         wavesurfer.addRegion({
             start: 64, // time in seconds
             end: 67, // time in seconds
-            color: 'hsla(100, 100%, 30%, 0.1)'
+            color: 'hsla(100, 100%, 30%, 0.1)',
+            drag: false
         });
 
         wavesurfer.addRegion({
-            start: 81,
-            end: 83,
-            color: 'hsla(200, 100%, 30%, 0.1)'
+            start: 82,
+            end: 84,
+            color: 'hsla(200, 100%, 30%, 0.1)',
+            drag: false
         });
 
         wavesurfer.addRegion({
             start: 93,
             end: 118,
-            color: 'hsla(400, 100%, 30%, 0.1)'
+            color: 'hsla(400, 100%, 30%, 0.1)',
+            drag: false
         });
     });
     </script>
