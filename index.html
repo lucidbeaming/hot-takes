@@ -17,7 +17,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-  
+
 <body>
     <div class="container">
         <div class="row">
@@ -38,65 +38,80 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-12>">
+                <div id="waveform"></div>
+            </div>
+        </div>
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mediaelement/4.1.0/mediaelement-and-player.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.3.7/wavesurfer.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.2.3/plugin/wavesurfer.regions.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script>
+    var
+        sourcesSelector = document.body.querySelectorAll('select'),
+        sourcesTotal = sourcesSelector.length;
 
+    for (var i = 0; i < sourcesTotal; i++) {
+        sourcesSelector[i].addEventListener('change', function(e) {
             var
-                sourcesSelector = document.body.querySelectorAll('select'),
-            sourcesTotal = sourcesSelector.length
-            ;
+                media = e.target.closest('.media-container').querySelector('.mejs__container').id,
+                player = mejs.players[media];
 
-            for (var i = 0; i < sourcesTotal; i++) {
-                sourcesSelector[i].addEventListener('change', function (e) {
-                    var
-                        media = e.target.closest('.media-container').querySelector('.mejs__container').id,
-                        player = mejs.players[media]
-                    ;
+            player.setSrc(e.target.value.replace('&amp;', '&'));
+            player.setPoster('');
+            player.load();
 
-                    player.setSrc(e.target.value.replace('&amp;', '&'));
-                    player.setPoster('');
-                    player.load();
+        });
 
-                });
-
-                // These media types cannot play at all on iOS, so disabling them
-                if (mejs.Features.isiOS) {
-                    sourcesSelector[i].querySelector('option[value^="rtmp"]').disabled = true;
-                    if (sourcesSelector[i].querySelector('option[value$="webm"]')) {
-                        sourcesSelector[i].querySelector('option[value$="webm"]').disabled = true;
-                    }
-                    if (sourcesSelector[i].querySelector('option[value$=".mpd"]')) {
-                        sourcesSelector[i].querySelector('option[value$=".mpd"]').disabled = true;
-                    }
-              if (sourcesSelector[i].querySelector('option[value$=".ogg"]')) {
-                        sourcesSelector[i].querySelector('option[value$=".ogg"]').disabled = true;
-                    }
-              if (sourcesSelector[i].querySelector('option[value$=".flv"]')) {
-                        sourcesSelector[i].querySelector('option[value*=".flv"]').disabled = true;
-                }
-                }
+        // These media types cannot play at all on iOS, so disabling them
+        if (mejs.Features.isiOS) {
+            sourcesSelector[i].querySelector('option[value^="rtmp"]').disabled = true;
+            if (sourcesSelector[i].querySelector('option[value$="webm"]')) {
+                sourcesSelector[i].querySelector('option[value$="webm"]').disabled = true;
             }
+            if (sourcesSelector[i].querySelector('option[value$=".mpd"]')) {
+                sourcesSelector[i].querySelector('option[value$=".mpd"]').disabled = true;
+            }
+            if (sourcesSelector[i].querySelector('option[value$=".ogg"]')) {
+                sourcesSelector[i].querySelector('option[value$=".ogg"]').disabled = true;
+            }
+            if (sourcesSelector[i].querySelector('option[value$=".flv"]')) {
+                sourcesSelector[i].querySelector('option[value*=".flv"]').disabled = true;
+            }
+        }
+    }
 
-            document.addEventListener('DOMContentLoaded', function() {
-                var mediaElements = document.querySelectorAll('video, audio'), total = mediaElements.length;
+    document.addEventListener('DOMContentLoaded', function() {
+        var mediaElements = document.querySelectorAll('video, audio'),
+            total = mediaElements.length;
 
-                for (var i = 0; i < total; i++) {
-                    new MediaElementPlayer(mediaElements[i], {
-                        pluginPath: 'dist/',
-                        success: function () {
-                            var target = document.body.querySelectorAll('.player'), targetTotal = target.length;
-                            for (var j = 0; j < targetTotal; j++) {
-                                target[j].style.visibility = 'visible';
-                            }
-                  }
-                });
+        for (var i = 0; i < total; i++) {
+            new MediaElementPlayer(mediaElements[i], {
+                pluginPath: 'dist/',
+                success: function() {
+                    var target = document.body.querySelectorAll('.player'),
+                        targetTotal = target.length;
+                    for (var j = 0; j < targetTotal; j++) {
+                        target[j].style.visibility = 'visible';
+                    }
                 }
             });
-        </script>
+        }
+        var wavesurfer = WaveSurfer.create({
+            container: '#waveform',
+            waveColor: 'violet',
+            progressColor: 'purple'
+        });
+        wavesurfer.load('candell.mp3');
+        wavesurfer.on('ready', function() {
+            wavesurfer.play();
+        });
+    });
+    </script>
 </body>
 
 </html>
