@@ -57,6 +57,18 @@
                             <div id="waveform"></div>
                         </div>
                     </div>
+                                        <p class="clearfix">&nbsp;</p>
+                    <div class="row clearfix">
+                        <div class="col-md-12">
+                            
+                            <button type="button" class="btn btn-default btn-lg" onclick="wavesurfer.play()">
+                                <span class="glyphicon glyphicon-play" aria-hidden="true"></span> Play
+                            </button>&nbsp;
+                            <button type="button" class="btn btn-default btn-lg" onclick="wavesurfer.playPause()">
+                                <span class="glyphicon glyphicon-pause" aria-hidden="true"></span> Pause
+                            </button>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div id="recorder">
@@ -79,12 +91,15 @@
                                         <button type="button" class="btn btn-default btn-lg">
                                             <span class="glyphicon glyphicon-send" aria-hidden="true"></span> Tweet
                                         </button>
+                                        
                                     </div>
                                 </div>
+<p class="clearfix">&nbsp;</p>
                             </div>
                         </div>
                     </div>
-                    <div class="row clearfix">
+
+                    <div class="row">
                         <div class="col-md-12">
                             <div id="share">
                                 <div class="row">
@@ -97,22 +112,14 @@
                                         <button type="button" class="btn btn-default btn-lg">
                                             <span class="glyphicon glyphicon-send" aria-hidden="true"></span> Tweet
                                         </button>
+                                        <p class="clearfix">&nbsp;</p>
                                     </div>
                                 </div>
+                                <p class="clearfix">&nbsp;</p>
                             </div>
                         </div>
                     </div>
-                    <div class="row clearfix">
-                        <div class="col-md-12">
-                            <p>&nbsp;</p>
-                            <button type="button" class="btn btn-default btn-lg pull-right" onclick="wavesurfer.play()">
-                                <span class="glyphicon glyphicon-play" aria-hidden="true"></span> Play
-                            </button>
-                            <button type="button" class="btn btn-default btn-lg pull-right" onclick="wavesurfer.playPause()">
-                                <span class="glyphicon glyphicon-pause" aria-hidden="true"></span> Pause
-                            </button>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -158,11 +165,11 @@
             drag: false
         });
         wavesurfer.on('region-update-end', function() {
-            $("#recorder").toggle("slow");
+            $("#recorder").show("slow");
             $("#share").hide();
          });
         wavesurfer.on('region-click', function() {
-            $("#share").toggle("slow");
+            $("#share").show("slow");
             $("#recorder").hide();
         });
 
